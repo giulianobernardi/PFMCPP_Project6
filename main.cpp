@@ -56,64 +56,102 @@ Create a branch named Part1
 #include <string>
 struct T
 {
-    T(<#type name#> v, const char* <#variable name#>)   //1
+    double value;
+    std::string name;
+
+    T(double v, const char* n)  {
+        this->value = v;
+        this->name = n;
+
+    } //1
     //2
     //3
 };
 
-struct <#structName1#>                                //4
+struct CompareVals
 {
-    <#type name#> compare(<#type name#> a, <#type name#> b) //5
+    T* compare(T* a, T* b) //5
     {
-        if( a->value < b->value ) return a;
-        if( a->value > b->value ) return b;
+        if (a != nullptr && b != nullptr) // check for nullptr
+        {
+            if( a->value < b->value ) return a;
+            if( a->value > b->value ) return b;
+        }
         return nullptr;
     }
 };
 
 struct U
 {
-    float <#name1#> { 0 }, <#name2#> { 0 };
-    <#returnType#> <#memberFunction#>(<#type name#>* <#updatedValue#>)      //12
+    float val1 { 0 }, val2 { 0 };
+    float distFcn(float* updatedValue) 
     {
-        
-    }
-};
-
-struct <#structname2#>
-{
-    static <#returntype#> <#staticFunctionA#>(U* that, <#type name#>* <#updatedValue#> )        //10
-    {
-        std::cout << "U's <#name1#> value: " << that-><#name1#> << std::endl;
-        that-><#name1#> = <#updatedValue#>;
-        std::cout << "U's <#name1#> updated value: " << that-><#name1#> << std::endl;
-        while( std::abs(that-><#name2#> - that-><#name1#>) > 0.001f )
+        std::cout << "U's val1 value: " << this->val1 << std::endl;
+        this->val1 = *updatedValue;
+        std::cout << "U's val1 updated value: " << this->val1 << std::endl;
+        while( std::abs(this->val2 - this->val1) > 0.001f )
         {
             /*
              write something that makes the distance between that-><#name2#> and that-><#name1#> get smaller
              */
-            that-><#name2#> += ;
+            if(this->val2 > this->val1)
+            {
+                this->val2 -= std::abs(this->val2 - this->val1) / 2;
+            }
+            else 
+            {
+                this->val2 += std::abs(this->val2 - this->val1) / 2;
+            }
         }
-        std::cout << "U's <#name2#> updated value: " << that-><#name2#> << std::endl;
-        return that-><#name2#> * that-><#name1#>;
+        std::cout << "U's val2 updated value: " << this->val2 << std::endl;
+        return this->val2 * this->val1;
+    }
+     
+};
+
+struct DistanceStruct
+{
+    static float distFcn(U* that, float* updatedValue )        //10
+    {
+        std::cout << "U's val1 value: " << that->val1 << std::endl;
+        that->val1 = *updatedValue;
+        std::cout << "U's val1 updated value: " << that->val1 << std::endl;
+        while( std::abs(that->val2 - that->val1) > 0.001f )
+        {
+            /*
+             write something that makes the distance between that-><#name2#> and that-><#name1#> get smaller
+             */
+            if(that->val2 > that->val1)
+            {
+                that->val2 -= std::abs(that->val2 - that->val1) / 2;
+            }
+            else 
+            {
+                that->val2 += std::abs(that->val2 - that->val1) / 2;
+            }
+        }
+        std::cout << "U's val2 updated value: " << that->val2 << std::endl;
+        return that->val2 * that->val1;
     }
 };
         
 int main()
 {
-    T <#name1#>( , );                                             //6
-    T <#name2#>( , );                                             //6
+    T varT1(1 , "var1");                                             //6
+    T varT2(2 , "var2");                                          //6
+
+    CompareVals f;                                            //7
+    auto* smaller = f.compare(&varT1 , &varT2);                              //8
+    if (smaller != nullptr) // check for nullptr
+        std::cout << "the smaller one is << " << smaller->name << std::endl; //9
     
-    <#structName1#> f;                                            //7
-    auto* smaller = f.compare( , );                              //8
-    std::cout << "the smaller one is << " << smaller->name << std::endl; //9
-    
-    U <#name3#>;
+    U U1;
     float updatedValue = 5.f;
-    std::cout << "[static func] <#name3#>'s multiplied values: " << <#structname2#>::<#staticFunctionA#>( , ) << std::endl;                  //11
+    std::cout << "[static func] U1's multiplied values: " << DistanceStruct::distFcn(&U1, &updatedValue) << std::endl;                  //11
     
-    U <#name4#>;
-    std::cout << "[member func] <#name4#>'s multiplied values: " << <#name4#>.<#memberFunction#>( &updatedValue ) << std::endl;
+    U U2;
+    std::cout << "[member func] U2's multiplied values: " << U2.distFcn( &updatedValue ) << std::endl;
+
 }
 
         
