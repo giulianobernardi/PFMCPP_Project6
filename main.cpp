@@ -153,11 +153,3 @@ int main()
     std::cout << "[member func] U2's multiplied values: " << U2.distFcn( &updatedValue ) << std::endl;
 
 }
-
-        
-        
-        
-        
-        
-        
-        
