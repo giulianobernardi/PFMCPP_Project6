@@ -88,7 +88,7 @@ struct U
     {
         std::cout << "U's val1 value: " << this->val1 << std::endl;
         std::cout << "U's val2 value: " << this->val2 << std::endl;
-        this->val1 = *updatedValue;
+        this->val1 = *updatedValue; FIXME what do we always do before using a pointer?
         std::cout << "U's val1 updated value: " << this->val1 << std::endl;
         while( std::abs(this->val2 - this->val1) > 0.001f )
         {
@@ -113,9 +113,9 @@ struct DistanceStruct
     {
         std::cout << "U's val1 value: " << that->val1 << std::endl;
         std::cout << "U's val2 value: " << that->val2 << std::endl;
-        that->val1 = *updatedValue;
+        that->val1 = *updatedValue; FIXME what do we always do before using a pointer?
         std::cout << "U's val1 updated value: " << that->val1 << std::endl;
-        while( std::abs(that->val2 - that->val1) > 0.001f )
+        while( std::abs(that->val2 - that->val1) > 0.001f ) FIXME what do we always do before using a pointer?
         {
             if(that->val2 > that->val1) // if val2 is larger I decrease it
             {
