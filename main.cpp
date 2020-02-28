@@ -89,16 +89,13 @@ struct U
         std::cout << "U's val1 value: " << this->val1 << std::endl;
         this->val1 = *updatedValue;
         std::cout << "U's val1 updated value: " << this->val1 << std::endl;
-        while( std::abs(this->val2 - this->val1) > 0.001f )
+        while( std::abs(this->val2 - this->val1) > 0.01f )
         {
-            /*
-             write something that makes the distance between that-><#name2#> and that-><#name1#> get smaller
-             */
-            if(this->val2 > this->val1)
+            if(this->val2 > this->val1) // if val2 is larger I decrease it
             {
                 this->val2 -= std::abs(this->val2 - this->val1) / 2;
             }
-            else 
+            else // if val2 is smaller I increase it
             {
                 this->val2 += std::abs(this->val2 - this->val1) / 2;
             }
@@ -116,16 +113,13 @@ struct DistanceStruct
         std::cout << "U's val1 value: " << that->val1 << std::endl;
         that->val1 = *updatedValue;
         std::cout << "U's val1 updated value: " << that->val1 << std::endl;
-        while( std::abs(that->val2 - that->val1) > 0.001f )
+        while( std::abs(that->val2 - that->val1) > 0.01f )
         {
-            /*
-             write something that makes the distance between that-><#name2#> and that-><#name1#> get smaller
-             */
-            if(that->val2 > that->val1)
+            if(that->val2 > that->val1) // if val2 is larger I decrease it
             {
                 that->val2 -= std::abs(that->val2 - that->val1) / 2;
             }
-            else 
+            else // if val2 is larger I increase it
             {
                 that->val2 += std::abs(that->val2 - that->val1) / 2;
             }
@@ -147,9 +141,13 @@ int main()
     
     U U1;
     float updatedValue = 5.f;
-    std::cout << "[static func] U1's multiplied values: " << DistanceStruct::distFcn(&U1, &updatedValue) << std::endl;                  //11
+    std::cout << "[static func]" << std::endl;
+    float multValuesU1 = DistanceStruct::distFcn(&U1, &updatedValue);
+    std::cout << "U1's multiplied values: " << multValuesU1 << std::endl;
     
     U U2;
-    std::cout << "[member func] U2's multiplied values: " << U2.distFcn( &updatedValue ) << std::endl;
+    std::cout << "[member func]" << std::endl;
+    float multValuesU2 = U2.distFcn(&updatedValue);
+    std::cout << "U2's multiplied values: " << multValuesU2 << std::endl;
 
 }
