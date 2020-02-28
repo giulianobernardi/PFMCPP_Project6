@@ -87,6 +87,7 @@ struct U
     float distFcn(float* updatedValue) 
     {
         std::cout << "U's val1 value: " << this->val1 << std::endl;
+        std::cout << "U's val2 value: " << this->val2 << std::endl;
         this->val1 = *updatedValue;
         std::cout << "U's val1 updated value: " << this->val1 << std::endl;
         while( std::abs(this->val2 - this->val1) > 0.01f )
@@ -111,6 +112,7 @@ struct DistanceStruct
     static float distFcn(U* that, float* updatedValue )        //10
     {
         std::cout << "U's val1 value: " << that->val1 << std::endl;
+        std::cout << "U's val2 value: " << that->val2 << std::endl;
         that->val1 = *updatedValue;
         std::cout << "U's val1 updated value: " << that->val1 << std::endl;
         while( std::abs(that->val2 - that->val1) > 0.01f )
