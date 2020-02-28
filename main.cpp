@@ -90,7 +90,7 @@ struct U
         std::cout << "U's val2 value: " << this->val2 << std::endl;
         this->val1 = *updatedValue;
         std::cout << "U's val1 updated value: " << this->val1 << std::endl;
-        while( std::abs(this->val2 - this->val1) > 0.01f )
+        while( std::abs(this->val2 - this->val1) > 0.001f )
         {
             if(this->val2 > this->val1) // if val2 is larger I decrease it
             {
@@ -115,7 +115,7 @@ struct DistanceStruct
         std::cout << "U's val2 value: " << that->val2 << std::endl;
         that->val1 = *updatedValue;
         std::cout << "U's val1 updated value: " << that->val1 << std::endl;
-        while( std::abs(that->val2 - that->val1) > 0.01f )
+        while( std::abs(that->val2 - that->val1) > 0.001f )
         {
             if(that->val2 > that->val1) // if val2 is larger I decrease it
             {
