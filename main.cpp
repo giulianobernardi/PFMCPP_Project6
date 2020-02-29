@@ -88,7 +88,8 @@ struct U
     {
         std::cout << "U's val1 value: " << this->val1 << std::endl;
         std::cout << "U's val2 value: " << this->val2 << std::endl;
-        this->val1 = *updatedValue; FIXME what do we always do before using a pointer?
+        if (updatedValue != nullptr)
+            this->val1 = *updatedValue;
         std::cout << "U's val1 updated value: " << this->val1 << std::endl;
         while( std::abs(this->val2 - this->val1) > 0.001f )
         {
@@ -111,23 +112,31 @@ struct DistanceStruct
 {
     static float distFcn(U* that, float* updatedValue )        //10
     {
-        std::cout << "U's val1 value: " << that->val1 << std::endl;
-        std::cout << "U's val2 value: " << that->val2 << std::endl;
-        that->val1 = *updatedValue; FIXME what do we always do before using a pointer?
-        std::cout << "U's val1 updated value: " << that->val1 << std::endl;
-        while( std::abs(that->val2 - that->val1) > 0.001f ) FIXME what do we always do before using a pointer?
+        if ((that != nullptr) && (updatedValue != nullptr))
         {
-            if(that->val2 > that->val1) // if val2 is larger I decrease it
+            std::cout << "U's val1 value: " << that->val1 << std::endl;
+            std::cout << "U's val2 value: " << that->val2 << std::endl;
+            that->val1 = *updatedValue;
+            std::cout << "U's val1 updated value: " << that->val1 << std::endl;
+            while( std::abs(that->val2 - that->val1) > 0.001f )
             {
-                that->val2 -= std::abs(that->val2 - that->val1) / 2;
+                if(that->val2 > that->val1) // if val2 is larger I decrease it
+                {
+                    that->val2 -= std::abs(that->val2 - that->val1) / 2;
+                }
+                else // if val2 is larger I increase it
+                {
+                    that->val2 += std::abs(that->val2 - that->val1) / 2;
+                }
             }
-            else // if val2 is larger I increase it
-            {
-                that->val2 += std::abs(that->val2 - that->val1) / 2;
-            }
+            std::cout << "U's val2 updated value: " << that->val2 << std::endl;
+            return that->val2 * that->val1;
         }
-        std::cout << "U's val2 updated value: " << that->val2 << std::endl;
-        return that->val2 * that->val1;
+        else
+        {
+            std::cout << "Arguments are null pointers" << std::endl;
+            return -1.0f;
+        }
     }
 };
         
