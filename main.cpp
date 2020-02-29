@@ -112,7 +112,7 @@ struct DistanceStruct
 {
     static float distFcn(U* that, float* updatedValue )        //10
     {
-        if ((that != nullptr) && (updatedValue != nullptr))
+        if ((that != nullptr) && (updatedValue != nullptr)) // check for nullptrs
         {
             std::cout << "U's val1 value: " << that->val1 << std::endl;
             std::cout << "U's val2 value: " << that->val2 << std::endl;
